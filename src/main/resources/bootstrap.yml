@@ -1,0 +1,14 @@
+server:
+  port: ${CONFIG_SERVER_PORT:9000}
+management:
+  security:
+    enabled: false
+spring:
+  profiles:
+    active: native
+  cloud:
+    config:
+      server:
+        native:
+          searchLocations: classpath:/config/{application}/{profile}/
+          addLabelLocations: false

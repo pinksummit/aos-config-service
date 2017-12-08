@@ -1,0 +1,141 @@
+# This is the root path at which the application is available
+server:
+  contextPath: /alwaysonscene/api
+
+# This should be set to true in public environments
+management:
+  security:
+    enabled: true
+
+spring:
+  application:
+    name: aos-api-service
+  profiles:
+    active: aws
+  datasource:
+    url: jdbc:sqlserver://${SQL_SERVER_HOST:localhost};databaseName=FirstOnScene
+    username: SA
+    password: Password12
+    driverClassName: com.microsoft.sqlserver.jdbc.SQLServerDriver
+  jpa:
+    show-sql: true
+    hibernate:
+      dialect: org.hibernate.dialect.SQLServer2012Dialect
+      ddl-auto: none
+      naming:
+        implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    properties:
+      hibernate:
+        proc:
+          param_null_passing: true
+
+# Properties specific to the legacy FOS server
+fos:
+  queryEndpoint: http://${FOS_JBOSS_HOST}:8027/main/onsceneincident/qbeIncidents;jsessionid=${JSESSION_ID}?pageID=${PAGE_ID}&requestID=1234
+  incidentRestBaseUrl: http://${API_SERVICE_HOST}/alwaysonscene/api/incident/search/findByIncidentNumber?incidentNumber=
+
+# Defines Lookups groups by profile name
+lookupProfileGroups:
+  2iS:
+    - Lookup.OS.IM.IncidentType
+    - Lookup.OS.IM.StateTerritory
+    - Lookup.OS.IM.StreetPrefixSuffix
+    - Lookup.OS.IM.StreetType
+    - Lookup.OS.IM.OwnerPerson
+    - Lookup.OS.EM.Pregnancy
+    - Lookup.OS.EM.AgeUnits
+    - Lookup.OS.EM.ProvidersPrimaryImpression
+    - Lookup.OS.EM.Gender
+    - Lookup.OS.EM.Race
+    - Lookup.OS.EM.ChiefComplaint
+    - Lookup.OS.EM.PrecipitatingMedicalEvent
+    - Lookup.OS.EM.PatientDisposition
+    - Lookup.OS.EM.Procedure
+    - Lookup.OS.EM.ProcedureStatus
+    - Lookup.OS.EM.MedicationResponse
+    - Lookup.OS.EM.BloodPressureMeasurementMethod
+    - Lookup.OS.EM.GlasgowComaScoreEye
+    - Lookup.OS.EM.GlasgowComaScoreMotor
+    - Lookup.OS.EM.GlasgowComaScoreVerbal
+    - Lookup.OS.EM.GlasgowComaScoreQualifier
+    - Lookup.OS.EM.PatientMovedToAmbulance
+    - Lookup.OS.EM.HospitalDisposition
+    - Lookup.OS.EM.ECGLead
+    - Lookup.OS.EM.Ectopy
+    - Lookup.OS.EM.CardiacRhythm
+    - Lookup.OS.EM.ECGWhenTaken
+    - Lookup.OS.EM.ECGMonitorAgency
+    - Lookup.OS.EM.DrugName
+    - Lookup.OS.EM.PerTime
+    - Lookup.OS.EM.MedicationAdministeredRoute
+    - Lookup.OS.EM.DrugUnit
+    - Lookup.OS.EM.ResponsivenessLevel
+    - Lookup.OS.EM.BloodGlucoseMethod
+    - Lookup.OS.EM.GlucometerReading
+    - Lookup.OS.EM.SuccessfulIVSite
+    - Lookup.OS.EM.IVSize
+    - Lookup.OS.EM.IVSetup
+    - Lookup.OS.EM.TubePlacementConfirmation
+    - Lookup.OS.EM.SkinAssessmentTemperature
+    - Lookup.OS.EM.SkinAssessmentColor
+    - Lookup.OS.EM.SkinAssessmentHydration
+    - Lookup.OS.EM.RespiratoryAssessment
+    - Lookup.OS.EM.PainScaleUsed
+    - Lookup.OS.EM.PupilsReactivity
+    - Lookup.OS.EM.BackCervicalAssessment
+    - Lookup.OS.EM.BackThoracicAssessment
+    - Lookup.OS.EM.BackLumbarAssessment
+    - Lookup.OS.EM.BackSacralAssessment
+    - Lookup.OS.EM.CirculatoryQuality
+    - Lookup.OS.EM.MotorEvaluation
+    - Lookup.OS.EM.SensoryEvaluation
+    - Lookup.OS.EM.CapnographyMethod
+    - Lookup.OS.EM.StrokeScale
+    - Lookup.OS.EM.StrokeOnsetOfSymptoms
+    - Lookup.OS.EM.StrokeScreen
+    - Lookup.OS.OS.Answer
+    - Lookup.OS.EM.IVDripDrug
+    - Lookup.OS.EM.IVDripSetup
+    - Lookup.OS.EM.IVDripUnit
+    - Lookup.OS.EM.PatientPositionDuringTransport
+    - Lookup.OS.EM.TemperatureMethod
+    - Lookup.OS.EM.VentilationMethod
+    - Lookup.OS.EM.OxygenSource
+    - Lookup.OS.EM.ChestLungAssessment
+    - Lookup.OS.EM.IntubationType
+    - Lookup.OS.EM.TubePlacementConfirmation
+    - Lookup.OS.EM.ProcedureLength
+    - Lookup.OS.EM.ProcedureEquipmentSize
+    - Lookup.OS.EM.DefibrillationType
+    - Lookup.OS.EM.DefibrillationConvertedTo
+    - Lookup.OS.EM.SuctioningMethod
+    - Lookup.OS.EM.SuctioningLocation
+    - Lookup.OS.EM.PatientType
+    - Lookup.OS.EM.IntraosseousLocation
+    - Lookup.OS.EM.IntraosseousAccessSize
+    - Lookup.OS.EM.VagalManeuverConvertedTo
+    - Lookup.OS.EM.APGARMuscleTone
+    - Lookup.OS.EM.APGARColor
+    - Lookup.OS.EM.APGARHeartRate
+    - Lookup.OS.EM.APGARReflexIrritability
+    - Lookup.OS.EM.APGARRespiratoryEffort
+    - Lookup.OS.EM.AEDPacingCO2Mode
+    - Lookup.OS.EM.PacingPadsPlacement
+    - Lookup.OS.EM.CardioversionConvertedTo
+    - Lookup.OS.EM.ChestDecompressionLocation
+    - Lookup.OS.EM.ChestDecompressionSize
+    - Lookup.OS.EM.ValsalvaManeuverConvertedTo
+    - Lookup.OS.EM.PrecordialThumpConvertedTo
+    - Lookup.OS.EM.CricothyrotomyType
+    - Lookup.OS.EM.PersonalProtectiveEquipmentUsed
+    - Lookup.OS.EM.ActiveBleedingControl
+    - Lookup.OS.EM.ExtremityLocation
+    - Lookup.OS.EM.ReceivingFacility
+    - Lookup.OS.EM.MedicalConsultFacility
+    - Lookup.OS.EM.MedicalConsultMethod
+    - Lookup.OS.EM.DestinationReason
+    - Lookup.OS.EM.DestinationType
+    - Lookup.OS.EM.ProcedureAuthorization
+    - Lookup.OS.EM.OriginatingFacility
+    - Lookup.OS.EM.TransportingUnit

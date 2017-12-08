@@ -1,0 +1,3 @@
+# Name the application and point it to where to grab configuration
+server:
+  contextPath: /alwaysonscene/ui
